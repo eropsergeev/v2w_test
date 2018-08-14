@@ -47,12 +47,16 @@ res = 'question_id,correct_answer\n'
 
 with open("test.csv") as f:
 	l = list(csv.reader(f))[1:]
+	i = 0
 	for x in l:
+		if (i % 100 == 0):
+			print(i, '/', len(l))
 		q_id = x[0]
 		q = get_sorted_answers(clear_text(x[1]), qs)[0][0]
 		anss = {clear_text(x[2 + i]) : i for i in range(3)}
 		ans = get_sorted_answers(corr_ans[q], anss.keys())[0]
 		res += q_id + ',' + str(anss[ans[0]]) + '\n'
+		i += 1
 
 with open("ans.csv", "w") as f:
 	f.write(res)
