@@ -47,7 +47,7 @@ res = 'question_id,correct_answer\n'
 
 with open("test.csv") as f:
 	l = list(csv.reader(f))[1:]
-	for x in l[:10]:
+	for x in l:
 		q_id = x[0]
 		q = get_sorted_answers(clear_text(x[1]), qs)[0][0]
 		anss = {clear_text(x[2 + i]) : i for i in range(3)}
